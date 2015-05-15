@@ -1370,10 +1370,10 @@ angular.module('textAngular.taBind', ['textAngular.factories', 'textAngular.DOM'
 								// Webkit on Apple tags
 								text = text.replace(/<br class="Apple-interchange-newline"[^>]*?>/ig, '').replace(/<span class="Apple-converted-space">( |&nbsp;)<\/span>/ig, '&nbsp;');
 							}
+
+							if(_pasteHandler) text = _pasteHandler(scope, {$html: text}) || text;
 							
 							text = taSanitize(text, '', _disableSanitizer);
-							
-							if(_pasteHandler) text = _pasteHandler(scope, {$html: text}) || text;
 							
 							taSelection.insertHtml(text, element[0]);
 							$timeout(function(){
